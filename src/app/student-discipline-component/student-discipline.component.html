@@ -1,27 +1,3 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h1>Student Discipline Form</h1>
-  <div>
-    <label for="student">Student</label>
-    <select formControlName="student" id="student" type="text">
-      <option *ngFor="let student of students" [value]="student.id">{{student.firstName + ' ' + student.lastName}}</option>
-    </select>
-  </div>
-
-  <div>
-    <label for="violation">Violation</label>
-    <input formControlName="violation" id="violation" type="text">
-  </div>
-
-  <div>
-    <label for="punishment">Punishment</label>
-    <select formControlName="punishment" id="punishment" type="text">
-      <option *ngFor="let punishment of punishments" [value]="punishment">{{punishment}}</option>
-    </select>
-  </div>
-
-  <div>
-    <button [disabled]="form.invalid" type="submit">Submit</button>
-  </div>
+<form>
 </form>
 
-<app-student-details *ngIf="selectedStudent" [student]="selectedStudent"></app-student-details>
