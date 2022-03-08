@@ -2,8 +2,6 @@
   width: 500px;
   margin: auto;
   margin-top: 20px;
-  /*justify-content: center;*/
-  /*flex-direction: column;*/
   border: solid 1px gray;
   border-radius: 5px;
   padding: 20px;
@@ -11,6 +9,5 @@
 }
 
 .detail-group {
-  margin-bottom: 10px
-;
+  margin-bottom: 10px;
 }
