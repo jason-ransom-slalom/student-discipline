@@ -1,0 +1,21 @@
+<div class="student-details-container">
+  <h2>{{student.firstName + ' ' + student.lastName}}</h2>
+
+  <div class="detail-group">
+    <div>Student ID:</div>
+    <div>{{student.id}}</div>
+  </div>
+
+  <div class="detail-group">
+    <div>Parent Phone Number:</div>
+    <div>{{student.parentPhoneNumber}}</div>
+  </div>
+
+  <div class="detail-group">
+    <div>Prior Violations:</div>
+    <div>{{student.priorViolations}}</div>
+  </div>
+
+  <button *ngIf="student.priorViolations > 3" (click)="expel()">EXPEL</button>
+</div>
+
