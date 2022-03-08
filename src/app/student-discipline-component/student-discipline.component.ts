@@ -4,7 +4,7 @@ import {StudentDisciplineService} from "../student-discipline.service";
 import {Student} from "../student";
 
 @Component({
-  selector: 'app-detention-report-component',
+  selector: 'app-student-discipline',
   templateUrl: './student-discipline.component.html',
   styleUrls: ['./student-discipline.component.css']
 })
