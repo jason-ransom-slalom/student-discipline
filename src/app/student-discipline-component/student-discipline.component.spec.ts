@@ -64,69 +64,6 @@ describe('DetentionReportComponentComponent', () => {
     expect(component.form.value).toEqual(expectedFormValue);
   });
 
-  it('should call getStudents from StudentDisciplineService and set the response in the components students property', () => {
-    expect(studentDisciplineServiceSpy.getStudents).toHaveBeenCalled();
-  });
-
-  it('should call getPunishments from StudentDisciplineService and set the response in the punishments property', () => {
-    expect(studentDisciplineServiceSpy.getPunishments).toHaveBeenCalled();
-  });
-
-  it('should not render child component if student is selected', () => {
-    fixture.detectChanges();
-    const studentDetailsComponent = fixture.debugElement.query(By.css('app-student-details'));
-    expect(studentDetailsComponent).toBeNull();
-  });
-
-  it('should render child component with student input if student is selected', () => {
-    component.selectedStudent = student1;
-    fixture.detectChanges();
-
-    const studentDetailsComponent = fixture.debugElement.query(By.css('app-student-details'));
-    expect(studentDetailsComponent).toBeTruthy();
-
-    //you can only do this with shallow rendering. If you include the child component in the testbed setup, it because an integration test.
-    //the test running will display warnings if we do not import the child component or use CUSTOM_ELEMENTS_SCHEMA
-    expect(studentDetailsComponent.properties['student']).toBe(component.selectedStudent);
-  });
-
-  it('should disable the submit button if form is invalid', () => {
-    component.form.get('violation')?.setValue('');
-    fixture.detectChanges();
-    const submitButton = fixture.debugElement.query(By.css('button'));
-    expect(submitButton.nativeElement.disabled).toBe(true);
-  });
-
-  it('should enable the submit button if form is valid', () => {
-    component.students = [student1, student2];
-    component.punishments = ['punishment1', 'punishment2'];
-
-    component.form.get('student')?.patchValue('222');
-    component.form.get('violation')?.patchValue('paint splatter on carpet');
-    component.form.get('punishment')?.patchValue('punishment2');
-
-    fixture.detectChanges();
-
-    const submitButton = fixture.debugElement.query(By.css('button'));
-    expect(submitButton.nativeElement.disabled).toBe(false);
-  });
-
-  it('should enable call onSubmit when submit button is clicked', () => {
-    spyOn(component, 'onSubmit');
-    component.students = [student1, student2];
-    component.punishments = ['punishment1', 'punishment2'];
-
-    component.form.get('student')?.patchValue('222');
-    component.form.get('violation')?.patchValue('paint splatter on carpet');
-    component.form.get('punishment')?.patchValue('punishment2');
-
-    fixture.detectChanges();
-
-    const submitButton = fixture.debugElement.query(By.css('button'));
-    submitButton.nativeElement.click();
-    expect(component.onSubmit).toHaveBeenCalled()
-  });
-
   it('should render inputs for each form control', () => {
     const studentInput = fixture.debugElement.query(By.css('#student'));
     const violationInput = fixture.debugElement.query(By.css('#violation'));
@@ -180,5 +117,68 @@ describe('DetentionReportComponentComponent', () => {
     expect(studentText.nativeElement.value).toBe('222');
     expect(violationText).toBe('paint splatter on carpet');
     expect(punishmentText).toBe('punishment2');
+  });
+
+  it('should disable the submit button if form is invalid', () => {
+    component.form.get('violation')?.setValue('');
+    fixture.detectChanges();
+    const submitButton = fixture.debugElement.query(By.css('button'));
+    expect(submitButton.nativeElement.disabled).toBe(true);
+  });
+
+  it('should enable the submit button if form is valid', () => {
+    component.students = [student1, student2];
+    component.punishments = ['punishment1', 'punishment2'];
+
+    component.form.get('student')?.patchValue('222');
+    component.form.get('violation')?.patchValue('paint splatter on carpet');
+    component.form.get('punishment')?.patchValue('punishment2');
+
+    fixture.detectChanges();
+
+    const submitButton = fixture.debugElement.query(By.css('button'));
+    expect(submitButton.nativeElement.disabled).toBe(false);
+  });
+
+  it('should call onSubmit when submit button is clicked', () => {
+    spyOn(component, 'onSubmit');
+    component.students = [student1, student2];
+    component.punishments = ['punishment1', 'punishment2'];
+
+    component.form.get('student')?.patchValue('222');
+    component.form.get('violation')?.patchValue('paint splatter on carpet');
+    component.form.get('punishment')?.patchValue('punishment2');
+
+    fixture.detectChanges();
+
+    const submitButton = fixture.debugElement.query(By.css('button'));
+    submitButton.nativeElement.click();
+    expect(component.onSubmit).toHaveBeenCalled()
+  });
+
+  it('should call getStudents from StudentDisciplineService and set the response in the components students property', () => {
+    expect(studentDisciplineServiceSpy.getStudents).toHaveBeenCalled();
+  });
+
+  it('should call getPunishments from StudentDisciplineService and set the response in the punishments property', () => {
+    expect(studentDisciplineServiceSpy.getPunishments).toHaveBeenCalled();
+  });
+
+  it('should not render child component if student is selected', () => {
+    fixture.detectChanges();
+    const studentDetailsComponent = fixture.debugElement.query(By.css('app-student-details'));
+    expect(studentDetailsComponent).toBeNull();
+  });
+
+  it('should render child component with student input if student is selected', () => {
+    component.selectedStudent = student1;
+    fixture.detectChanges();
+
+    const studentDetailsComponent = fixture.debugElement.query(By.css('app-student-details'));
+    expect(studentDetailsComponent).toBeTruthy();
+
+    //you can only do this with shallow rendering. If you include the child component in the testbed setup, it because an integration test.
+    //the test running will display warnings if we do not import the child component or use CUSTOM_ELEMENTS_SCHEMA
+    expect(studentDetailsComponent.properties['student']).toBe(component.selectedStudent);
   });
 });
