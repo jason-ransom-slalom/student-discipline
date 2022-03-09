@@ -4,8 +4,6 @@ import {StudentDisciplineComponent} from './student-discipline.component';
 import {BrowserModule, By} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StudentDisciplineService} from "../student-discipline.service";
-import {Student} from "../student";
-import {StudentDetailsComponent} from "../student-details/student-details.component";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {of} from "rxjs";
 
