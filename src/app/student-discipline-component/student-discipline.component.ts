@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Student} from "../student";
+import {StudentDisciplineService} from "../student-discipline.service";
 
 @Component({
   selector: 'app-student-discipline',
@@ -6,10 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-discipline.component.css']
 })
 export class StudentDisciplineComponent implements OnInit {
-  constructor() {
+  students: Student[];
+  form: FormGroup = this.formBuilder.group({
+    student: [''],
+    violation: [''],
+    punishment: [''],
+  })
+
+  constructor(private formBuilder: FormBuilder, private studentDisciplineService: StudentDisciplineService) {
   }
 
   ngOnInit(): void {
+    this.studentDisciplineService.getStudents().subscribe(response => {
+
+      //if response has an error
+      //displayError(response.error)
+
+      // else
+      this.students = response;
+    })
+
+    //call the student service
+    //save the response in a students propety
   }
 
 }
